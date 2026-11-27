@@ -70,7 +70,24 @@ export const api = {
     removeComment: (id, cid) => del(`/posts/${id}/comments/${cid}`),
   },
   explore: params => get(`/explore${qs(params)}`), search: q => get(`/search${qs({ q })}`),
-  clubs: { list: p => get(`/clubs${qs(p)}`), get: id => get(`/clubs/${id}`), join: id => post(`/clubs/${id}/join`), leave: id => del(`/clubs/${id}/leave`), members: id => get(`/clubs/${id}/members`) },
+  clubs: {
+  list: p => get(`/clubs${qs(p)}`),
+  get: id => get(`/clubs/${id}`),
+  join: id => post(`/clubs/${id}/join`),
+  leave: id => del(`/clubs/${id}/leave`),
+  members: id => get(`/clubs/${id}/members`),
+
+  create: data => post('/clubs', data),
+  update: (id, data) => patch(`/clubs/${id}`, data),
+
+  requests: id => get(`/clubs/${id}/requests`),
+
+  reviewRequest: (id, userId, action) =>
+    post(`/clubs/${id}/requests/${userId}/${action}`),
+
+  assignAdmin: (id, userId) =>
+    post(`/clubs/${id}/admins/${userId}`)
+},
   events: { list: p => get(`/events${qs(p)}`), get: id => get(`/events/${id}`), going: id => put(`/events/${id}/going`), notGoing: id => del(`/events/${id}/going`), create: d => post('/events', d) },
   jobs: {
     list: p => get(`/jobs${qs(p)}`),                          // { kind: 'job'|'internship'|'alumni_referral'|'on_campus', q, saved: 1 }

@@ -1,3 +1,4 @@
+import ClubPage from './ClubPage.jsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { Bell, Play, Eye, Heart, FileText, Search, Send, Check, X, MapPin, Clock3, Bookmark, Briefcase, CalendarDays, UserPlus, GraduationCap, Hash, LogOut, ChevronLeft, Users, Compass, MessageCircle } from 'lucide-react';
 
@@ -209,7 +210,7 @@ function Settings({ onSignOut }) {
 }
 
 export default function Page({ name, posts, renderPost, go, onSignOut, notes, setNotes }) {
-  const map = { Messages: <Messages />, Notifications: <Notifications n={notes} setN={setNotes} />, 'Jobs & Internships': <Jobs />, 'Campus Events': <Events />, 'Clubs & Communities': <Clubs />, 'Alumni Connect': <Alumni go={go} />, 'My Network': <Network go={go} />, Explore: <Explore go={go} />, 'Saved Posts': <Saved posts={posts} renderPost={renderPost} go={go} />, Settings: <Settings onSignOut={onSignOut} /> };
+  const map = { Messages: <Messages />, Notifications: <Notifications n={notes} setN={setNotes} />, 'Jobs & Internships': <Jobs />, 'Campus Events': <Events />, 'Clubs & Communities': <ClubPage />, 'Alumni Connect': <Alumni go={go} />, 'My Network': <Network go={go} />, Explore: <Explore go={go} />, 'Saved Posts': <Saved posts={posts} renderPost={renderPost} go={go} />, Settings: <Settings onSignOut={onSignOut} /> };
   return map[name] || <Explore go={go} />;
 }
 
